@@ -13,8 +13,8 @@ class ProcessImg:
         #self.model : YOLO = YOLO("yolov8m.pt")
     
     def process(self, x64: str):
-        picture_name = str(datetime.now()).replace(" ","-").replace(":", "-").replace(".", "-")
-        file = 'C:/HoleDetector/%s.png' %picture_name
+        picture_name = str(datetime.now()).replace(" ","-").replace(":", "-").replace(".", "-") + '.png'
+        file = 'C:/HoleDetector/%s' %picture_name
         print(file)
         img_array = np.frombuffer(base64.b64decode(x64), np.uint8)
         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
@@ -30,5 +30,5 @@ class ProcessImg:
         # plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
         # plt.axis('off')
         # plt.show()
-        return data.data.size(0), file
+        return data.data.size(0), picture_name
         
